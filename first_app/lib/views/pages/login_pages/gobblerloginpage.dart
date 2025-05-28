@@ -1,22 +1,73 @@
 import 'package:flutter/material.dart';
 
-class GobblerLoginPage extends StatelessWidget {
+class GobblerLoginPage extends StatefulWidget {
   const GobblerLoginPage({super.key});
+
+  @override
+  State<GobblerLoginPage> createState() => _GobblerLoginPageState();
+}
+
+class _GobblerLoginPageState extends State<GobblerLoginPage> {
+
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Hero(
-            tag: 2,
-            child: Image(
-              image: AssetImage('assets/images/gobbler.png'),
-              height: 150.0,
-              width: 150.0,
+      appBar: AppBar(
+        title: Text('Gobbler Login Page'),
+        automaticallyImplyLeading: true,
+      ),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(16.0),
+        child: Column(        
+          children: [
+          Center(
+            child: Hero(
+              tag: 2,
+              child: Image(
+                image: AssetImage('assets/images/gobbler.png'),
+                height: 150.0,
+                width: 150.0,
+              ),
             ),
           ),
+           const SizedBox(height: 20.0),
+          TextField(
+            controller: usernameController,
+            decoration: InputDecoration(
+              labelText: 'Username',
+              border: OutlineInputBorder(),
+            ),
+            onEditingComplete: () {
+              setState(() {
+              }
+            );
+            },
+          ),
+          Text(usernameController.text),
+
+          const SizedBox(height: 20.0),
+
+          TextField(
+            controller: passwordController,
+            decoration: InputDecoration(
+              labelText: 'Password',
+              border: OutlineInputBorder(),
+            ),
+
+            onEditingComplete: () {
+              setState(() {
+              }
+            );
+            },
+          ),
+
+          Text(passwordController.text),
+
         ],
+        ),
       ),
     );
   }
