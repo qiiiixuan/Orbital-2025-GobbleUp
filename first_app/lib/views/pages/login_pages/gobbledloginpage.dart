@@ -1,23 +1,75 @@
 import 'package:flutter/material.dart';
 
-class Gobbledloginpage extends StatelessWidget {
+class Gobbledloginpage extends StatefulWidget {
   const Gobbledloginpage({super.key});
+
+  @override
+  State<Gobbledloginpage> createState() => _GobbledloginpageState();
+}
+
+class _GobbledloginpageState extends State<Gobbledloginpage> {
+
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  // These controllers are not used in this example, but can be used for form validation or submission.
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Column(
-        children: [
-          Hero(
-            tag: 1,
-            child: Image(
-              image: AssetImage('assets/images/gobbled.png'),
-              height: 150.0,
-              width: 150.0,
+      appBar: AppBar(
+        title: Text('Gobbled Test Page'),
+      ),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(16.0),
+        child: Column(          
+          children: [
+            Center(
+              child: Hero(
+                tag: 1,
+                child: Image(
+                  image: AssetImage('assets/images/gobbled.png'),
+                  height: 150.0,
+                  width: 150.0,
+                ),
+              ),
             ),
-          ),
-        ],
+            const SizedBox(height: 20.0),
+            TextField(
+              controller: usernameController,
+              decoration: InputDecoration(
+                labelText: 'Username',
+                border: OutlineInputBorder(),
+              ),
+              onEditingComplete: () {
+                setState(() {
+                }
+              );
+              },
+            ),
+            Text(usernameController.text),
+
+            const SizedBox(height: 20.0),
+
+            TextField(
+              controller: passwordController,
+              decoration: InputDecoration(
+                labelText: 'Password',
+                border: OutlineInputBorder(),
+              ),
+
+              onEditingComplete: () {
+                setState(() {
+                }
+              );
+              },
+            ),
+
+            Text(passwordController.text),
+
+
+
+          ],
+        ),
       ),
     );
   }
