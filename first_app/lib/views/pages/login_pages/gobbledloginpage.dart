@@ -22,53 +22,53 @@ class _GobbledloginpageState extends State<Gobbledloginpage> {
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(          
-        children: [
-          Center(
-            child: Hero(
-              tag: 1,
-              child: Image(
-                image: AssetImage('assets/images/gobbled.png'),
-                height: 150.0,
-                width: 150.0,
+          children: [
+            Center(
+              child: Hero(
+                tag: 1,
+                child: Image(
+                  image: AssetImage('assets/images/gobbled.png'),
+                  height: 150.0,
+                  width: 150.0,
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 20.0),
-          TextField(
-            controller: usernameController,
-            decoration: InputDecoration(
-              labelText: 'Username',
-              border: OutlineInputBorder(),
+            const SizedBox(height: 20.0),
+            TextField(
+              controller: usernameController,
+              decoration: InputDecoration(
+                labelText: 'Username',
+                border: OutlineInputBorder(),
+              ),
+              onEditingComplete: () {
+                setState(() {
+                }
+              );
+              },
             ),
-            onEditingComplete: () {
-              setState(() {
-              }
-            );
-            },
-          ),
-          Text(usernameController.text),
+            Text(usernameController.text),
 
-          const SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
 
-          TextField(
-            controller: passwordController,
-            decoration: InputDecoration(
-              labelText: 'Password',
-              border: OutlineInputBorder(),
+            TextField(
+              controller: passwordController,
+              decoration: InputDecoration(
+                labelText: 'Password',
+                border: OutlineInputBorder(),
+              ),
+
+              onEditingComplete: () {
+                setState(() {
+                }
+              );
+              },
             ),
 
-            onEditingComplete: () {
-              setState(() {
-              }
-            );
-            },
-          ),
-
-          Text(passwordController.text),
+            Text(passwordController.text),
 
 
-          
-        ],
+
+          ],
         ),
       ),
     );

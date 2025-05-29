@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "20610432792",
+    "project_id": "gobbleup-4b0ad",
+    "storage_bucket": "gobbleup-4b0ad.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:20610432792:android:7595ace775089d5350a86d",
+        "android_client_info": {
+          "package_name": "com.example.first_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIH-kN7bOnQErtoj3D2ZKB8DAiusNAaQg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

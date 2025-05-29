@@ -23,29 +23,29 @@ class _GobblerLoginPageState extends State<GobblerLoginPage> {
         padding: EdgeInsets.all(16.0),
         child: Column(        
           children: [
-          Center(
-            child: Hero(
-              tag: 2,
-              child: Image(
-                image: AssetImage('assets/images/gobbler.png'),
-                height: 150.0,
-                width: 150.0,
+            Center(
+              child: Hero(
+                tag: 2,
+                child: Image(
+                  image: AssetImage('assets/images/gobbler.png'),
+                  height: 150.0,
+                  width: 150.0,
+                ),
               ),
             ),
-          ),
-           const SizedBox(height: 20.0),
-          TextField(
-            controller: usernameController,
-            decoration: InputDecoration(
-              labelText: 'Username',
-              border: OutlineInputBorder(),
+            const SizedBox(height: 20.0),
+            TextField(
+              controller: usernameController,
+              decoration: InputDecoration(
+                labelText: 'Username',
+                border: OutlineInputBorder(),
+              ),
+              onEditingComplete: () {
+                setState(() {
+                }
+              );
+              },
             ),
-            onEditingComplete: () {
-              setState(() {
-              }
-            );
-            },
-          ),
           Text(usernameController.text),
 
           const SizedBox(height: 20.0),
