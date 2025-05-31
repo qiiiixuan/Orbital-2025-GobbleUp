@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:first_app/views/pages/home_pages/gobbledhomepage.dart';
 
 class Gobbledloginpage extends StatefulWidget {
   const Gobbledloginpage({super.key});
@@ -8,10 +9,13 @@ class Gobbledloginpage extends StatefulWidget {
 }
 
 class _GobbledloginpageState extends State<Gobbledloginpage> {
-
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   // These controllers are not used in this example, but can be used for form validation or submission.
+
+
+  String confirmedUsername = '123';
+  String confirmedPassword = '123';
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +25,7 @@ class _GobbledloginpageState extends State<Gobbledloginpage> {
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
-        child: Column(          
+        child: Column(
           children: [
             Center(
               child: Hero(
@@ -41,36 +45,51 @@ class _GobbledloginpageState extends State<Gobbledloginpage> {
                 border: OutlineInputBorder(),
               ),
               onEditingComplete: () {
-                setState(() {
-                }
-              );
+                setState(() {});
               },
             ),
             Text(usernameController.text),
-
             const SizedBox(height: 20.0),
-
             TextField(
               controller: passwordController,
               decoration: InputDecoration(
                 labelText: 'Password',
                 border: OutlineInputBorder(),
               ),
-
               onEditingComplete: () {
-                setState(() {
-                }
-              );
+                setState(() {});
               },
             ),
-
             Text(passwordController.text),
-
-
-
+            ElevatedButton(
+                onPressed: () {
+                  onLoginButtonPressed();
+                },
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(200, 50),
+                ),
+                child: Text('Login')),
           ],
         ),
       ),
     );
+  }
+
+  void onLoginButtonPressed() {
+    if (usernameController.text == confirmedUsername &&
+        passwordController.text == confirmedPassword) {
+      var pushReplacement = Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return GobbledHomePage();
+          },
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Invalid username or password')),
+      );
+    }
   }
 }

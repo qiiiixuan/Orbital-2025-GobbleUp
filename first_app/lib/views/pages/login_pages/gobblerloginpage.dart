@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:first_app/views/pages/home_pages/gobblerhomepage.dart';
+
 
 class GobblerLoginPage extends StatefulWidget {
   const GobblerLoginPage({super.key});
@@ -11,6 +13,8 @@ class _GobblerLoginPageState extends State<GobblerLoginPage> {
 
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  String confirmedUsername = '123';
+  String confirmedPassword = '123';
 
   @override
   Widget build(BuildContext context) {
@@ -66,9 +70,38 @@ class _GobblerLoginPageState extends State<GobblerLoginPage> {
 
           Text(passwordController.text),
 
+          ElevatedButton(onPressed: () {
+            onLoginButtonPressed(); 
+          }
+          ,style: ElevatedButton.styleFrom(
+            minimumSize: Size(200, 50),
+          ),
+          child: Text('Login')),
+
         ],
         ),
       ),
     );
   }
+
+
+
+ void onLoginButtonPressed() {
+   if (usernameController.text == confirmedUsername &&
+       passwordController.text == confirmedPassword) {
+     var pushReplacement = Navigator.pushReplacement(context,
+       MaterialPageRoute(
+         builder: (context) {
+           return GobblerHomePage();
+           },
+         ),
+     );
+   } else {
+     ScaffoldMessenger.of(context).showSnackBar(
+       SnackBar(content: Text('Invalid username or password')),
+     );
+   }
+ }
+
+
 }
