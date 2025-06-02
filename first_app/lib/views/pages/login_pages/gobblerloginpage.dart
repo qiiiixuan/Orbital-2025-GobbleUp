@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:first_app/views/pages/home_pages/gobblerhomepage.dart';
+import 'package:first_app/views/pages/home_pages/gobblerrootpage.dart';
 
 
 class GobblerLoginPage extends StatefulWidget {
@@ -60,6 +61,7 @@ class _GobblerLoginPageState extends State<GobblerLoginPage> {
               labelText: 'Password',
               border: OutlineInputBorder(),
             ),
+            obscureText: true,
 
             onEditingComplete: () {
               setState(() {
@@ -92,7 +94,7 @@ class _GobblerLoginPageState extends State<GobblerLoginPage> {
      var pushReplacement = Navigator.pushReplacement(context,
        MaterialPageRoute(
          builder: (context) {
-           return GobblerHomePage();
+           return GobblerRootPage();
            },
          ),
      );

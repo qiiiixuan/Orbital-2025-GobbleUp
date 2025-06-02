@@ -19,7 +19,7 @@ class _GobblerHomePageState extends State<GobbledHomePage> {
       ),
       body: currentIndex == 0
           ? Center(
-              child: Text('Welcome to the Gobbler Home Page!'),
+              child: Text('Welcome to the Gobbled Home Page!'),
             )
           : Center(
               child: SingleChildScrollView(
@@ -65,4 +65,5 @@ class _GobblerHomePageState extends State<GobbledHomePage> {
       ),
     );
   }
+  
 }

@@ -56,6 +56,8 @@ class _GobbledloginpageState extends State<Gobbledloginpage> {
                 labelText: 'Password',
                 border: OutlineInputBorder(),
               ),
+              obscureText: true,
+              
               onEditingComplete: () {
                 setState(() {});
               },
