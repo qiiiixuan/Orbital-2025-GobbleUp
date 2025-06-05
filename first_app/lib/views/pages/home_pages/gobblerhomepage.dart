@@ -52,8 +52,6 @@ class _GobblerHomePageState extends State<GobblerHomePage> {
       //       )
       //       )
       //       ),
-      
-      
       // bottomNavigationBar: NavigationBar(
       //   destinations: [
       //     NavigationDestination(

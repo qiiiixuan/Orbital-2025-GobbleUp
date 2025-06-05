@@ -30,24 +30,21 @@ class _GobblerProfilePageState extends State<GobblerProfilePage> {
                 tooltip: 'Logout',
                 icon: Icon(Icons.logout),
                 onPressed: () {
-                  setState(() {});
-                  // Handle logout action
-                  var pushReplacement = Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return WelcomePage();
-                      },
-                    ),
+                  Navigator.of(context,rootNavigator: true).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (_) => const WelcomePage()),
+                    (route) => false,
                   );
                 },
               ),
               TextButton.icon(
                 onPressed: () {
+                  setState(() {
+                    Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (_) => const WelcomePage()),
+                    (route) => false,
+                  );
+                  });
                   // Handle logout action
-                   Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute(builder: (_) => const WelcomePage()),
-      (route) => false,);
                 },
                 icon: const Icon(Icons.logout),
                 label: const Text('Log out'),
