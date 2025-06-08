@@ -1,7 +1,9 @@
+import 'package:GobbleUp/src/services/auth_service.dart';
+import 'package:GobbleUp/src/views/pages/register_pages/gobblerregisterpage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../home_pages/gobblerrootpage.dart';
-
 
 class GobblerLoginPage extends StatefulWidget {
   const GobblerLoginPage({super.key});
@@ -11,12 +13,30 @@ class GobblerLoginPage extends StatefulWidget {
 }
 
 class _GobblerLoginPageState extends State<GobblerLoginPage> {
-
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   String confirmedUsername = '123';
   String confirmedPassword = '123';
+  String errorMessage = '';
+  
+  void dispose() {
+    usernameController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
+  void signIn() async{
+    try{
+      await authService.value.signIn(
+        email: usernameController.text.trim(),
+        password: passwordController.text,
+      );
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        errorMessage = 'Login failed: ${e.message}';
+      });
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +46,7 @@ class _GobblerLoginPageState extends State<GobblerLoginPage> {
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
-        child: Column(        
+        child: Column(
           children: [
             Center(
               child: Hero(
@@ -46,64 +66,81 @@ class _GobblerLoginPageState extends State<GobblerLoginPage> {
                 border: OutlineInputBorder(),
               ),
               onEditingComplete: () {
-                setState(() {
-                }
-              );
+                setState(() {});
               },
             ),
-          Text(usernameController.text),
-
-          const SizedBox(height: 20.0),
-
-          TextField(
-            controller: passwordController,
-            decoration: InputDecoration(
-              labelText: 'Password',
-              border: OutlineInputBorder(),
+            Text(usernameController.text),
+            const SizedBox(height: 20.0),
+            TextField(
+              controller: passwordController,
+              decoration: InputDecoration(
+                labelText: 'Password',
+                border: OutlineInputBorder(),
+              ),
+              obscureText: true,
+              onEditingComplete: () {
+                setState(() {});
+              },
             ),
-            obscureText: true,
+            Text(passwordController.text),
 
-            onEditingComplete: () {
-              setState(() {
-              }
-            );
-            },
-          ),
+            const SizedBox(height: 10.0),
 
-          Text(passwordController.text),
+            Text(
+              errorMessage,
+              style: TextStyle(color: Colors.red),
+            ),
 
-          ElevatedButton(onPressed: () {
-            onLoginButtonPressed(); 
-          }
-          ,style: ElevatedButton.styleFrom(
-            minimumSize: Size(200, 50),
-          ),
-          child: Text('Login')),
+            ElevatedButton(
+                onPressed: () {
+                  //when I fix the sign in function, I will uncomment this
+                  //signIn(); 
 
-        ],
+                  onLoginButtonPressed();
+                },
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(200, 50),
+                ),
+                child: Text('Login')),
+
+            const SizedBox(height: 10.0),
+
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return GobblerRegisterPage();
+                      },
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(200, 50),
+                ),
+                child: Text('Register')),
+          ],
         ),
       ),
     );
   }
 
-
-
- void onLoginButtonPressed() {
-   if (usernameController.text == confirmedUsername &&
-       passwordController.text == confirmedPassword) {
-     var pushReplacement = Navigator.pushReplacement(context,
-       MaterialPageRoute(
-         builder: (context) {
-           return GobblerRootPage();
-           },
-         ),
-     );
-   } else {
-     ScaffoldMessenger.of(context).showSnackBar(
-       SnackBar(content: Text('Invalid username or password')),
-     );
-   }
- }
-
-
+  void onLoginButtonPressed() {
+    if (usernameController.text == confirmedUsername &&
+        passwordController.text == confirmedPassword) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return GobblerRootPage();
+          },
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Invalid username or password')),
+      );
+    }
+  }
 }
