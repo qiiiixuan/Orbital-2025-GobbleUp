@@ -27,7 +27,7 @@ class AuthService {
  }
 
 
- //Create a new user with email and password
+ // Create a new user with email and password
  Future<UserCredential> createUser({
    required String email,
    required String password,})
@@ -45,20 +45,20 @@ class AuthService {
  }
 
 
- // Reset password
+ // Reset with random password
  Future<void> resetPassword(String email) async {
    await _auth.sendPasswordResetEmail(email: email);
  }
 
 
- //updateUserName
+ // Update userName
  Future<void> updateUserName({
    required String name}) async {
    await currentUser!.updateDisplayName(name);
  }
 
 
- //deleteAccount
+ // Delete account
  Future<void> deleteAccount({
    required String email,
    required String password,
@@ -70,6 +70,19 @@ class AuthService {
    await currentUser!.reauthenticateWithCredential(credential);
    await currentUser!.delete();
    await _auth.signOut();
+ }
+
+
+ // Reset with input password
+ Future<void> resetPasswordFromCurrentPassword({
+   required String currentPassword,
+   required String newPassword,
+   required String email,
+ }) async {
+   AuthCredential credential =
+       EmailAuthProvider.credential(email: email, password: currentPassword);
+   await currentUser!.reauthenticateWithCredential(credential);
+   await currentUser!.updatePassword(newPassword);
  }
 
 
