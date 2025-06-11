@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../login_pages/welcomepage.dart';
+import '../onboarding_pages/welcomepage.dart';
 
 class GobblerProfilePage extends StatefulWidget {
   const GobblerProfilePage({super.key});

@@ -1,9 +1,9 @@
 import 'package:GobbleUp/src/services/auth_service.dart';
-import 'package:GobbleUp/src/views/pages/register_pages/gobblerregisterpage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../home_pages/gobblerrootpage.dart';
+import 'gobblerregisterpage.dart';
 
 class GobblerLoginPage extends StatefulWidget {
   const GobblerLoginPage({super.key});
@@ -103,7 +103,9 @@ class _GobblerLoginPageState extends State<GobblerLoginPage> {
                 ),
                 child: Text('Login')),
 
-            const SizedBox(height: 10.0),
+            const SizedBox(height: 20.0),
+            Text("or"),
+            const SizedBox(height: 20.0),
 
             ElevatedButton(
                 onPressed: () {

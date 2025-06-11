@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../home_pages/gobbledhomepage.dart';
+import 'gobbledregisterpage.dart';
 
 class Gobbledloginpage extends StatefulWidget {
   const Gobbledloginpage({super.key});
@@ -72,6 +73,26 @@ class _GobbledloginpageState extends State<Gobbledloginpage> {
                   minimumSize: Size(200, 50),
                 ),
                 child: Text('Login')),
+
+            const SizedBox(height: 20.0),
+            Text("or"),
+            const SizedBox(height: 20.0),
+
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return GobbledRegisterPage();
+                      },
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(200, 50),
+                ),
+                child: Text('Register')),
           ],
         ),
       ),
