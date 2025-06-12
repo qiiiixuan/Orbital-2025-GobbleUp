@@ -41,6 +41,7 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
+    databaseURL: 'https://gobbleup-4b0ad-default-rtdb.asia-southeast1.firebasedatabase.app/',
     apiKey: 'AIzaSyDBDQcOyUGN3ZGKzUCbDFzcJKapN2BHjI4',
     appId: '1:20610432792:web:0cb4be1725b2fbbe50a86d',
     messagingSenderId: '20610432792',
@@ -51,6 +52,7 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions android = FirebaseOptions(
+    databaseURL: 'https://gobbleup-4b0ad-default-rtdb.asia-southeast1.firebasedatabase.app/',
     apiKey: 'AIzaSyCIH-kN7bOnQErtoj3D2ZKB8DAiusNAaQg',
     appId: '1:20610432792:android:7595ace775089d5350a86d',
     messagingSenderId: '20610432792',
@@ -59,6 +61,7 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
+    databaseURL: 'https://gobbleup-4b0ad-default-rtdb.asia-southeast1.firebasedatabase.app/',
     apiKey: 'AIzaSyCSxJ502YbM7MVodUxm8UChAJjvmiS-E_U',
     appId: '1:20610432792:ios:aa142d5f928bb37150a86d',
     messagingSenderId: '20610432792',
@@ -68,6 +71,7 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
+    databaseURL: 'https://gobbleup-4b0ad-default-rtdb.asia-southeast1.firebasedatabase.app/',
     apiKey: 'AIzaSyCSxJ502YbM7MVodUxm8UChAJjvmiS-E_U',
     appId: '1:20610432792:ios:aa142d5f928bb37150a86d',
     messagingSenderId: '20610432792',
@@ -77,6 +81,7 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
+    databaseURL: 'https://gobbleup-4b0ad-default-rtdb.asia-southeast1.firebasedatabase.app/',
     apiKey: 'AIzaSyDBDQcOyUGN3ZGKzUCbDFzcJKapN2BHjI4',
     appId: '1:20610432792:web:dc5b33b45fbc553750a86d',
     messagingSenderId: '20610432792',

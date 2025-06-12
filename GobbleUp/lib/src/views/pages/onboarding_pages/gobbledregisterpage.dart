@@ -1,4 +1,6 @@
 // Account creation page
+import 'package:GobbleUp/src/data/constants.dart';
+import 'package:GobbleUp/src/services/database_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:GobbleUp/src/services/auth_service.dart';
@@ -11,17 +13,24 @@ class GobbledRegisterPage extends StatefulWidget {
 }
 
 class _GobbledRegisterPageState extends State<GobbledRegisterPage> {
+
+  // Variables to be used
   TextEditingController nameController = TextEditingController();
   String? selectedCuisine;
 
+  // Dropdown menu items (more to be added)
   List<String> cuisines = [
     'Western',
     'Chinese',
     'Italian',
   ];
 
-  void popPage() {
-    Navigator.pop(context);
+  // Creating new data entry in database
+  void createAccount() {
+    DatabaseService().create(path: 'Gobbled/1', data: { //'1' to be replaced by UID
+      'Name': nameController.text,
+      'Cuisine': selectedCuisine,
+    });
   }
 
   @override
@@ -52,9 +61,7 @@ class _GobbledRegisterPageState extends State<GobbledRegisterPage> {
               width: double.infinity,
               child: Text(
                 "Restaurant Details:",
-                style: TextStyle(
-                  fontSize: 30,
-                ),
+                style: KTextStyle.titleTextStyle,
                 textAlign: TextAlign.start,
               ),
             ),
@@ -89,6 +96,18 @@ class _GobbledRegisterPageState extends State<GobbledRegisterPage> {
                   });
                 },
               ),
+            ),
+
+            const SizedBox(height: 50.0),
+
+            ElevatedButton(
+              onPressed: () {
+                createAccount();
+              },
+              style: ElevatedButton.styleFrom(
+                minimumSize: Size(200, 50),
+              ),
+              child: Text('Next'),
             ),
           ],
         ),

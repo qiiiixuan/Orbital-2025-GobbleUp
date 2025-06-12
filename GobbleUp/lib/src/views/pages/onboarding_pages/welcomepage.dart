@@ -1,3 +1,4 @@
+import 'package:GobbleUp/src/data/constants.dart';
 import 'package:flutter/material.dart';
 
 import 'gobbledloginpage.dart';
@@ -16,10 +17,19 @@ class WelcomePage extends StatelessWidget {
           ),
           Title(
             color: Colors.black,
-            child: Text("Gobble Up"),
+            child: Text(
+              "Gobble Up",
+              style: KTextStyle.titleTextStyle,
+            ),
           ),
           Padding(
             padding: EdgeInsets.all(10.0),
+          ),
+          SizedBox(
+            child: Text(
+              'I am a ...',
+              style: KTextStyle.normalTextStyle,
+            ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -45,7 +55,7 @@ class WelcomePage extends StatelessWidget {
                         },
                       ));
                     },
-                    child: Text("I am a Gobbler"),
+                    child: Text("Gobbler"),
                   ),
                 ],
               ),
@@ -73,7 +83,7 @@ class WelcomePage extends StatelessWidget {
                         },
                       ));
                     },
-                    child: Text("I am a Gobbled"),
+                    child: Text("Gobbled"),
                   ),
                 ],
               ),
