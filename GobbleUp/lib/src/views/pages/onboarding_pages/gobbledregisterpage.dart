@@ -1,9 +1,7 @@
 // Account creation page
 import 'package:GobbleUp/src/data/constants.dart';
 import 'package:GobbleUp/src/services/database_service.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:GobbleUp/src/services/auth_service.dart';
 
 class GobbledRegisterPage extends StatefulWidget {
   const GobbledRegisterPage({super.key});
@@ -15,6 +13,7 @@ class GobbledRegisterPage extends StatefulWidget {
 class _GobbledRegisterPageState extends State<GobbledRegisterPage> {
 
   // Variables to be used
+  String uid = 'QHzu939l99fxgWkqYTBxK85tWTx1'; //to be replaced with user ID through Auth
   TextEditingController nameController = TextEditingController();
   String? selectedCuisine;
 
@@ -27,7 +26,7 @@ class _GobbledRegisterPageState extends State<GobbledRegisterPage> {
 
   // Creating new data entry in database
   void createAccount() {
-    DatabaseService().create(path: 'Gobbled/1', data: { //'1' to be replaced by UID
+    DatabaseService().create(path: 'Gobbled/$uid', data: {
       'Name': nameController.text,
       'Cuisine': selectedCuisine,
     });
@@ -104,9 +103,7 @@ class _GobbledRegisterPageState extends State<GobbledRegisterPage> {
               onPressed: () {
                 createAccount();
               },
-              style: ElevatedButton.styleFrom(
-                minimumSize: Size(200, 50),
-              ),
+              style: KButtonStyle.elevatedButtonStyle,
               child: Text('Next'),
             ),
           ],
