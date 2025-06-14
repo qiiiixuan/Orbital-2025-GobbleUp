@@ -1,16 +1,17 @@
+import 'package:GobbleUp/src/views/pages/home_pages/gobbledrootpage.dart';
 import 'package:flutter/material.dart';
 
 import '../home_pages/gobbledhomepage.dart';
 import 'gobbledregisterpage.dart';
 
-class Gobbledloginpage extends StatefulWidget {
-  const Gobbledloginpage({super.key});
+class GobbledLoginPage extends StatefulWidget {
+  const GobbledLoginPage({super.key});
 
   @override
-  State<Gobbledloginpage> createState() => _GobbledloginpageState();
+  State<GobbledLoginPage> createState() => _GobbledLoginPageState();
 }
 
-class _GobbledloginpageState extends State<Gobbledloginpage> {
+class _GobbledLoginPageState extends State<GobbledLoginPage> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   // These controllers are not used in this example, but can be used for form validation or submission.
@@ -102,11 +103,11 @@ class _GobbledloginpageState extends State<Gobbledloginpage> {
   void onLoginButtonPressed() {
     if (usernameController.text == confirmedUsername &&
         passwordController.text == confirmedPassword) {
-      var pushReplacement = Navigator.pushReplacement(
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(
           builder: (context) {
-            return GobbledHomePage();
+            return GobbledRootPage();
           },
         ),
       );

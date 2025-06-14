@@ -54,7 +54,7 @@ class _GobblerRootPageState extends State<GobblerRootPage> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: _onTapped,
-        backgroundColor: const Color.fromARGB(255, 230, 59, 59),
+        backgroundColor: const Color.fromARGB(255, 240, 162, 162),
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

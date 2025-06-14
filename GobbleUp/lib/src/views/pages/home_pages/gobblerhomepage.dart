@@ -1,3 +1,4 @@
+import 'package:GobbleUp/src/services/auth_service.dart';
 import 'package:flutter/material.dart';
 
 class GobblerHomePage extends StatefulWidget {
@@ -9,7 +10,8 @@ class GobblerHomePage extends StatefulWidget {
 
 class _GobblerHomePageState extends State<GobblerHomePage> {
   int currentIndex = 0;
-
+  // final User? user = AuthService().currentUser;
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

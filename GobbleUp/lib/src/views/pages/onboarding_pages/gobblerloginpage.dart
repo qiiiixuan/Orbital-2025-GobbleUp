@@ -94,9 +94,9 @@ class _GobblerLoginPageState extends State<GobblerLoginPage> {
             ElevatedButton(
                 onPressed: () {
                   //when I fix the sign in function, I will uncomment this
-                  //signIn(); 
+                  signIn(); 
 
-                  onLoginButtonPressed();
+                  // onLoginButtonPressed();
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(200, 50),

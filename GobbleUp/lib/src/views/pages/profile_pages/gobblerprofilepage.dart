@@ -1,3 +1,5 @@
+import 'package:GobbleUp/src/services/auth_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../onboarding_pages/welcomepage.dart';
@@ -39,6 +41,7 @@ class _GobblerProfilePageState extends State<GobblerProfilePage> {
               ),
               TextButton.icon(
                 onPressed: () {
+                  logout();
                   setState(() {
                     Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
                     MaterialPageRoute(builder: (_) => const WelcomePage()),
@@ -55,5 +58,15 @@ class _GobblerProfilePageState extends State<GobblerProfilePage> {
         ),
       ),
     );
+  }
+
+  void logout()async {
+    try  {
+      await authService.value.signOut();
+    } on FirebaseAuthException catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Logout failed: ${e.message}')),
+      );
+    }
   }
 }
