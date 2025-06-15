@@ -1,4 +1,5 @@
-import 'package:GobbleUp/src/services/auth_layout.dart';
+import 'package:GobbleUp/src/services/auth_layout_gobbler.dart';
+import 'package:GobbleUp/src/services/auth_layout_gobbled.dart';
 import 'package:GobbleUp/src/services/auth_service.dart';
 import 'package:GobbleUp/src/data/constants.dart';
 import 'package:flutter/material.dart';
@@ -81,7 +82,7 @@ class WelcomePage extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) {
-                          return GobbledLoginPage();
+                          return AuthLayoutGobbled();
                         },
                       ));
                     },

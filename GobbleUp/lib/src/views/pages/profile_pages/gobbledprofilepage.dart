@@ -2,7 +2,7 @@ import 'package:GobbleUp/src/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../login_pages/welcomepage.dart';
+import '../onboarding_pages/welcomepage.dart';
 
 class GobbledProfilePage extends StatefulWidget {
   const GobbledProfilePage({super.key});
@@ -33,6 +33,7 @@ class _GobbledProfilePageState extends State<GobbledProfilePage> {
                 tooltip: 'Logout',
                 icon: Icon(Icons.logout),
                 onPressed: () {
+                  logout();
                   Navigator.of(context,rootNavigator: true).pushAndRemoveUntil(
                     MaterialPageRoute(builder: (_) => const WelcomePage()),
                     (route) => false,
@@ -41,7 +42,7 @@ class _GobbledProfilePageState extends State<GobbledProfilePage> {
               ),
               TextButton.icon(
                 onPressed: () {
-                  // logout();
+                  logout();
                   setState(() {
                     Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
                     MaterialPageRoute(builder: (_) => const WelcomePage()),

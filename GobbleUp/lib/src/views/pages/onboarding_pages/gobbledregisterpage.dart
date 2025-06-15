@@ -1,6 +1,9 @@
 // Account creation page
 import 'package:GobbleUp/src/data/constants.dart';
+import 'package:GobbleUp/src/services/auth_service.dart';
 import 'package:GobbleUp/src/services/database_service.dart';
+import 'package:GobbleUp/src/views/pages/home_pages/gobbledrootpage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class GobbledRegisterPage extends StatefulWidget {
@@ -13,8 +16,10 @@ class GobbledRegisterPage extends StatefulWidget {
 class _GobbledRegisterPageState extends State<GobbledRegisterPage> {
 
   // Variables to be used
-  String uid = 'QHzu939l99fxgWkqYTBxK85tWTx1'; //to be replaced with user ID through Auth
+  // String uid = 'QHzu939l99fxgWkqYTBxK85tWTx1'; //to be replaced with user ID through Auth
+  TextEditingController emailController = TextEditingController();
   TextEditingController nameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   String? selectedCuisine;
 
   // Dropdown menu items (more to be added)
@@ -22,14 +27,49 @@ class _GobbledRegisterPageState extends State<GobbledRegisterPage> {
     'Western',
     'Chinese',
     'Italian',
+    'Indian',
+    'Mexican',
+    'Japanese',
+    'Thai',
+   
   ];
 
   // Creating new data entry in database
-  void createAccount() {
-    DatabaseService().create(path: 'Gobbled/$uid', data: {
-      'Name': nameController.text,
-      'Cuisine': selectedCuisine,
-    });
+  // void createAccount() {
+  //   DatabaseService().create(path: 'Gobbled/$uid', data: {
+  //     'Name': nameController.text,
+  //     'Cuisine': selectedCuisine,
+  //   });
+  // }
+
+  void register() async {
+    try {
+      final credential = await authService.value.createUser(
+          email: emailController.text, password: passwordController.text);
+
+      final uid = credential.user!.uid;
+
+      await DatabaseService().create(
+        path: 'Gobbled/$uid',
+        data: {
+          'email': emailController.text,
+          'username': nameController.text,
+          'Cuisine': selectedCuisine,
+        },
+      );
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return GobbledRootPage();
+          },
+        ),
+      );
+    } on FirebaseAuthException catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Registration failed: ${e.message}')),
+      );
+    }
   }
 
   @override
@@ -76,6 +116,25 @@ class _GobbledRegisterPageState extends State<GobbledRegisterPage> {
 
             const SizedBox(height: 20.0),
 
+            TextField(
+              controller: emailController,
+              decoration: InputDecoration(
+                labelText: 'Email',
+              ),
+            ),
+
+            const SizedBox(height: 20.0),
+
+            TextField(
+              controller: passwordController,
+              decoration: InputDecoration(
+                labelText: 'Password',
+              ),
+              obscureText: true,
+            ),
+
+            const SizedBox(height: 20.0),
+
             SizedBox(
               width: double.infinity,
               child: DropdownButton(
@@ -101,7 +160,7 @@ class _GobbledRegisterPageState extends State<GobbledRegisterPage> {
 
             ElevatedButton(
               onPressed: () {
-                createAccount();
+                register();
               },
               style: KButtonStyle.elevatedButtonStyle,
               child: Text('Next'),

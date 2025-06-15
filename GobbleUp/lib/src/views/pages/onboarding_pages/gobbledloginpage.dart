@@ -1,4 +1,6 @@
+import 'package:GobbleUp/src/services/auth_service.dart';
 import 'package:GobbleUp/src/views/pages/home_pages/gobbledrootpage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../home_pages/gobbledhomepage.dart';
@@ -12,19 +14,35 @@ class GobbledLoginPage extends StatefulWidget {
 }
 
 class _GobbledLoginPageState extends State<GobbledLoginPage> {
-  TextEditingController usernameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   // These controllers are not used in this example, but can be used for form validation or submission.
 
+  String errorMessage = '';
 
-  String confirmedUsername = '123';
-  String confirmedPassword = '123';
+void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
+  void signIn() async{
+    try{
+      await authService.value.signIn(
+        email: emailController.text.trim(),
+        password: passwordController.text,
+      );
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        errorMessage = 'Login failed: ${e.message}';
+      });
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Gobbled Test Page'),
+        title: Text('Gobbled Login Page'),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
@@ -42,16 +60,16 @@ class _GobbledLoginPageState extends State<GobbledLoginPage> {
             ),
             const SizedBox(height: 20.0),
             TextField(
-              controller: usernameController,
+              controller: emailController,
               decoration: InputDecoration(
-                labelText: 'Username',
+                labelText: 'Email',
                 border: OutlineInputBorder(),
               ),
               onEditingComplete: () {
                 setState(() {});
               },
             ),
-            Text(usernameController.text),
+            Text(emailController.text),
             const SizedBox(height: 20.0),
             TextField(
               controller: passwordController,
@@ -65,10 +83,15 @@ class _GobbledLoginPageState extends State<GobbledLoginPage> {
                 setState(() {});
               },
             ),
-            Text(passwordController.text),
+
+            Text(
+              errorMessage,
+              style: TextStyle(color: Colors.red),
+            ),
+
             ElevatedButton(
                 onPressed: () {
-                  onLoginButtonPressed();
+                  signIn();
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(200, 50),
@@ -100,21 +123,5 @@ class _GobbledLoginPageState extends State<GobbledLoginPage> {
     );
   }
 
-  void onLoginButtonPressed() {
-    if (usernameController.text == confirmedUsername &&
-        passwordController.text == confirmedPassword) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            return GobbledRootPage();
-          },
-        ),
-      );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Invalid username or password')),
-      );
-    }
-  }
+  
 }

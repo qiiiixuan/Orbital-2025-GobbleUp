@@ -13,14 +13,14 @@ class GobblerLoginPage extends StatefulWidget {
 }
 
 class _GobblerLoginPageState extends State<GobblerLoginPage> {
-  TextEditingController usernameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  String confirmedUsername = '123';
-  String confirmedPassword = '123';
+  // String confirmedUsername = '123';
+  // String confirmedPassword = '123';
   String errorMessage = '';
   
   void dispose() {
-    usernameController.dispose();
+    emailController.dispose();
     passwordController.dispose();
     super.dispose();
   }
@@ -28,7 +28,7 @@ class _GobblerLoginPageState extends State<GobblerLoginPage> {
   void signIn() async{
     try{
       await authService.value.signIn(
-        email: usernameController.text.trim(),
+        email: emailController.text.trim(),
         password: passwordController.text,
       );
     } on FirebaseAuthException catch (e) {
@@ -60,16 +60,16 @@ class _GobblerLoginPageState extends State<GobblerLoginPage> {
             ),
             const SizedBox(height: 20.0),
             TextField(
-              controller: usernameController,
+              controller: emailController,
               decoration: InputDecoration(
-                labelText: 'Username',
+                labelText: 'Email',
                 border: OutlineInputBorder(),
               ),
               onEditingComplete: () {
                 setState(() {});
               },
             ),
-            Text(usernameController.text),
+            Text(emailController.text),
             const SizedBox(height: 20.0),
             TextField(
               controller: passwordController,
@@ -93,10 +93,9 @@ class _GobblerLoginPageState extends State<GobblerLoginPage> {
 
             ElevatedButton(
                 onPressed: () {
-                  //when I fix the sign in function, I will uncomment this
+                
                   signIn(); 
 
-                  // onLoginButtonPressed();
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(200, 50),
@@ -126,23 +125,5 @@ class _GobblerLoginPageState extends State<GobblerLoginPage> {
         ),
       ),
     );
-  }
-
-  void onLoginButtonPressed() {
-    if (usernameController.text == confirmedUsername &&
-        passwordController.text == confirmedPassword) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            return GobblerRootPage();
-          },
-        ),
-      );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Invalid username or password')),
-      );
-    }
   }
 }

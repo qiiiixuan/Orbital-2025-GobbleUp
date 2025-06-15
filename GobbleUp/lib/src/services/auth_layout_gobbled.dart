@@ -1,11 +1,11 @@
+import 'package:GobbleUp/src/views/pages/home_pages/gobbledrootpage.dart';
+import 'package:GobbleUp/src/views/pages/onboarding_pages/gobbledloginpage.dart';
 import 'package:flutter/material.dart';
 import 'package:GobbleUp/src/services/auth_service.dart';
-import 'package:GobbleUp/src/views/pages/login_pages/gobblerloginpage.dart';
-import 'package:GobbleUp/src/views/pages/register_pages/gobblerregisterpage.dart';
-import 'package:GobbleUp/src/views/pages/home_pages/gobblerrootpage.dart';
 
-class AuthLayout extends StatelessWidget {
-  const AuthLayout({
+
+class AuthLayoutGobbled extends StatelessWidget {
+  const AuthLayoutGobbled({
     super.key,
     this.pageIfNotConnected,});
 
@@ -23,9 +23,9 @@ class AuthLayout extends StatelessWidget {
             if (snapshot.connectionState == ConnectionState.waiting) {
               widget = const Center(child: CircularProgressIndicator());
             } else if (snapshot.hasData ) {
-              widget = const GobblerRootPage();
+              widget = const GobbledRootPage();
             } else {
-              widget = pageIfNotConnected ?? const GobblerLoginPage();
+              widget = pageIfNotConnected ?? const GobbledLoginPage();
             }
             return widget;
             
