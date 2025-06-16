@@ -20,6 +20,12 @@ class _GobbledRegisterPageState extends State<GobbledRegisterPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController MRTController = TextEditingController();
+  TextEditingController signatureController = TextEditingController();
+  TextEditingController environmentController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+
+  String? selectedPriceRange;
   String? selectedCuisine;
 
   // Dropdown menu items (more to be added)
@@ -31,6 +37,15 @@ class _GobbledRegisterPageState extends State<GobbledRegisterPage> {
     'Mexican',
     'Japanese',
     'Thai',
+   
+  ];
+
+  List<String> priceRange = [
+    'Less than \$10',
+    '\$10 - \$20',
+    '\$20 - \$30',
+    '\$30 - \$40',
+    'More than \$40',
    
   ];
 
@@ -55,6 +70,11 @@ class _GobbledRegisterPageState extends State<GobbledRegisterPage> {
           'email': emailController.text,
           'username': nameController.text,
           'Cuisine': selectedCuisine,
+          'MRT': MRTController.text,
+          'PriceRange': selectedPriceRange,
+          'SignatureDish': signatureController.text,
+          'Environment': environmentController.text,
+          'Description': descriptionController.text,
         },
       );
       Navigator.pushReplacement(
@@ -153,6 +173,65 @@ class _GobbledRegisterPageState extends State<GobbledRegisterPage> {
                     selectedCuisine = value;
                   });
                 },
+              ),
+            ),
+
+            const SizedBox(height: 20.0),
+
+            TextField(
+              controller: MRTController,
+              decoration: InputDecoration(
+                labelText: 'Nearest MRT Station',
+              ),
+           ),
+
+           const SizedBox(height: 20.0),
+
+            SizedBox(
+              width: double.infinity,
+              child: DropdownButton(
+                alignment: AlignmentDirectional.centerStart,
+                hint: Container(
+                  alignment: Alignment.centerLeft,
+                  child: Text('Price Range'),
+                ),
+                value: selectedPriceRange,
+                items: priceRange.map((value) => DropdownMenuItem(
+                  value: value,
+                  child: Text(value),
+                )).toList(),
+                onChanged: (String? value) {
+                  setState(() {
+                    selectedPriceRange = value;
+                  });
+                },
+              ),
+            ),
+
+            const SizedBox(height: 20.0),
+
+            TextField(
+              controller: signatureController,
+              decoration: InputDecoration(
+                labelText: 'What is your signature dish?',
+              ),
+            ),
+            
+            const SizedBox(height: 20.0),
+
+            TextField(
+              controller: environmentController,
+              decoration: InputDecoration(
+                labelText: 'What is your environment like?',
+              ),
+            ),
+
+            const SizedBox(height: 20.0),
+
+            TextField(
+              controller: descriptionController,
+              decoration: InputDecoration(
+                labelText: 'Describe your restaurant in 5 0 words or less',
               ),
             ),
 
