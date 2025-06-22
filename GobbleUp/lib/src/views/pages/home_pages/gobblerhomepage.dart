@@ -78,7 +78,6 @@ class _GobblerHomePageState extends State<GobblerHomePage> {
         title: Text('Gobbler Home Page'),
         automaticallyImplyLeading: false, // Disable back button
       ),
-      // body: buildRestaurantCard(_randomRestaurantFuture1),
       body: CardSwiper(
         cardsCount: RestaurantFutures.length,
         cardBuilder:

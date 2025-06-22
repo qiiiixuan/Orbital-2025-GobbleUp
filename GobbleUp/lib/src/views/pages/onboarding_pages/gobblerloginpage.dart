@@ -1,4 +1,5 @@
 import 'package:GobbleUp/src/services/auth_service.dart';
+import 'package:GobbleUp/src/views/pages/onboarding_pages/resetpasswordpage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -18,15 +19,15 @@ class _GobblerLoginPageState extends State<GobblerLoginPage> {
   // String confirmedUsername = '123';
   // String confirmedPassword = '123';
   String errorMessage = '';
-  
+
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
   }
 
-  void signIn() async{
-    try{
+  void signIn() async {
+    try {
       await authService.value.signIn(
         email: emailController.text.trim(),
         password: passwordController.text,
@@ -37,6 +38,7 @@ class _GobblerLoginPageState extends State<GobblerLoginPage> {
       });
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,7 +71,6 @@ class _GobblerLoginPageState extends State<GobblerLoginPage> {
                 setState(() {});
               },
             ),
-            Text(emailController.text),
             const SizedBox(height: 20.0),
             TextField(
               controller: passwordController,
@@ -82,30 +83,40 @@ class _GobblerLoginPageState extends State<GobblerLoginPage> {
                 setState(() {});
               },
             ),
-            Text(passwordController.text),
-
+            Align(
+            alignment: Alignment.centerRight,
+            child: TextButton(
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return ResetPasswordPage();
+                    },
+                  ),
+                );
+              },
+              child: Text('Reset Password'),
+             ),
+            ),
+            
+            
             const SizedBox(height: 10.0),
-
             Text(
               errorMessage,
               style: TextStyle(color: Colors.red),
             ),
-
             ElevatedButton(
                 onPressed: () {
-                
-                  signIn(); 
-
+                  signIn();
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(200, 50),
                 ),
                 child: Text('Login')),
-
             const SizedBox(height: 20.0),
             Text("or"),
             const SizedBox(height: 20.0),
-
             ElevatedButton(
                 onPressed: () {
                   Navigator.pushReplacement(
