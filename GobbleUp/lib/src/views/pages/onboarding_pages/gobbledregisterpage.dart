@@ -231,7 +231,7 @@ class _GobbledRegisterPageState extends State<GobbledRegisterPage> {
             TextField(
               controller: descriptionController,
               decoration: InputDecoration(
-                labelText: 'Describe your restaurant in 5 0 words or less',
+                labelText: 'Describe your restaurant in 5Bring words or less',
               ),
             ),
 

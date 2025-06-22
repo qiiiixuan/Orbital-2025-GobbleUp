@@ -19,6 +19,7 @@ dependencies:
   flutter_gen: ^5.10.0
   firebase_auth: ^5.5.4
   firebase_database: ^11.3.7
+  flutter_card_swiper: ^7.0.2
 
 dev_dependencies:
   flutter_test:
