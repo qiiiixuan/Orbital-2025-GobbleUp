@@ -55,6 +55,8 @@ class AuthService {
    await currentUser!.updateDisplayName(name);
  }
 
+  // Update profile information
+ 
 
  // Delete account
  Future<void> deleteAccount({
