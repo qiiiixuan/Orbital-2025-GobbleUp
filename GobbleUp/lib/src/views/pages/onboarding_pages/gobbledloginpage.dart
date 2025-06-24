@@ -1,5 +1,6 @@
 import 'package:GobbleUp/src/services/auth_service.dart';
 import 'package:GobbleUp/src/views/pages/home_pages/gobbledrootpage.dart';
+import 'package:GobbleUp/src/views/pages/onboarding_pages/resetpasswordpage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -69,7 +70,6 @@ void dispose() {
                 setState(() {});
               },
             ),
-            Text(emailController.text),
             const SizedBox(height: 20.0),
             TextField(
               controller: passwordController,
@@ -83,6 +83,24 @@ void dispose() {
                 setState(() {});
               },
             ),
+            Align(
+            alignment: Alignment.centerRight,
+            child: TextButton(
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return ResetPasswordPage();
+                    },
+                  ),
+                );
+              },
+              child: Text('Reset Password'),
+             ),
+            ),
+
+            const SizedBox(height: 10.0),
 
             Text(
               errorMessage,

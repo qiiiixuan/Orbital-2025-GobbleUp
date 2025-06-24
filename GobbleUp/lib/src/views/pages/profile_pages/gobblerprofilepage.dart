@@ -19,49 +19,54 @@ class _GobblerProfilePageState extends State<GobblerProfilePage> {
         title: Text('Gobbler Profile Page'),
         automaticallyImplyLeading: true,
       ),
-      body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              CircleAvatar(
-                radius: 50,
-                backgroundImage: AssetImage('assets/images/gobbler.png'),
-              ),
-              const SizedBox(height: 20),
-              Text('This is the Profile Page!'),
-              IconButton(
-                tooltip: 'Logout',
-                icon: Icon(Icons.logout),
-                onPressed: () {
-                  Navigator.of(context,rootNavigator: true).pushAndRemoveUntil(
-                    MaterialPageRoute(builder: (_) => const WelcomePage()),
-                    (route) => false,
-                  );
-                },
-              ),
-              TextButton.icon(
-                onPressed: () {
-                  logout();
-                  setState(() {
+      body: SingleChildScrollView(
+          child: Container(
+            width: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(height: 30),
+                CircleAvatar(
+                  radius: 50,
+                  backgroundImage: AssetImage('assets/images/gobbler.png'),
+                ),
+                const SizedBox(height: 20),
+                Text('This is the Profile Page!'),
+                IconButton(
+                  tooltip: 'Logout',
+                  icon: Icon(Icons.logout),
+                  onPressed: () {
                     Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
-                    MaterialPageRoute(builder: (_) => const WelcomePage()),
-                    (route) => false,
-                  );
-                  });
-                  // Handle logout action
-                },
-                icon: const Icon(Icons.logout),
-                label: const Text('Log out'),
-              ),
-            ],
+                      MaterialPageRoute(builder: (_) => const WelcomePage()),
+                      (route) => false,
+                    );
+                  },
+                ),
+                TextButton.icon(
+                  onPressed: () {
+                    logout();
+                    setState(() {
+                      Navigator.of(context, rootNavigator: true)
+                          .pushAndRemoveUntil(
+                        MaterialPageRoute(builder: (_) => const WelcomePage()),
+                        (route) => false,
+                      );
+                    });
+                    // Handle logout action
+                  },
+                  icon: const Icon(Icons.logout),
+                  label: const Text('Log out'),
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-    );
+      );
   }
 
-  void logout()async {
-    try  {
+  void logout() async {
+    try {
       await authService.value.signOut();
     } on FirebaseAuthException catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
