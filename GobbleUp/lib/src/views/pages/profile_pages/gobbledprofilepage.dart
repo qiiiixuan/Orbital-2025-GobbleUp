@@ -1,5 +1,6 @@
 import 'package:GobbleUp/src/data/constants.dart';
 import 'package:GobbleUp/src/services/auth_service.dart';
+import 'package:GobbleUp/src/views/pages/profile_pages/gobbledupdateprofilepage.dart';
 import 'package:GobbleUp/src/views/pages/profile_pages/gobblerprofilepage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -57,8 +58,7 @@ class _GobbledProfilePageState extends State<GobbledProfilePage> {
                   MaterialPageRoute(
                     builder: (context) {
                       // Add Profile Update Page here
-                      // return GobbledUpdateProfilePage();
-                      return GobblerProfilePage(); // Replace with your actual profile update page
+                      return GobbleUpDateProfilePage();
                     },
                   ),
                 );
