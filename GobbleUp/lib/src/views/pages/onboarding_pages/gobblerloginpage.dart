@@ -2,8 +2,7 @@ import 'package:GobbleUp/src/services/auth_service.dart';
 import 'package:GobbleUp/src/views/pages/onboarding_pages/resetpasswordpage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-import '../home_pages/gobblerrootpage.dart';
+import '../../../data/constants.dart';
 import 'gobblerregisterpage.dart';
 
 class GobblerLoginPage extends StatefulWidget {
@@ -118,34 +117,39 @@ class _GobblerLoginPageState extends State<GobblerLoginPage> {
             const SizedBox(height: 10.0),
 
             ElevatedButton(
-                onPressed: () {
-                  signIn();
-                },
-                style: ElevatedButton.styleFrom(
-                  minimumSize: Size(200, 50),
-                ),
-                child: Text('Login')
+              onPressed: () {
+                signIn();
+              },
+              style: KButtonStyle.elevatedButtonStyle,
+              child: Text(
+                'Login',
+                style: KTextStyle.buttonTextStyle,
+              )
             ),
 
             const SizedBox(height: 40.0),
-            Text("New User"),
+            Text("New User?"),
             const SizedBox(height: 10.0),
 
             ElevatedButton(
-                onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return GobblerRegisterPage();
-                      },
-                    ),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  minimumSize: Size(200, 50),
-                ),
-                child: Text('Register')),
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return GobblerRegisterPage();
+                    },
+                  ),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                minimumSize: Size(200, 50),
+              ),
+              child: Text(
+                'Register',
+                style: KTextStyle.buttonTextStyle,
+              )
+            ),
           ],
         ),
       ),

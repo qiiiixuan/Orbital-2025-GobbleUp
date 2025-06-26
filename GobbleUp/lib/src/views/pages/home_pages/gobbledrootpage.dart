@@ -10,7 +10,7 @@ class GobbledRootPage extends StatefulWidget {
 }
 
 class _GobbledRootPageState extends State<GobbledRootPage> {
-  int currentIndex = 0;
+  int currentIndex = 1;
 
   final _navigatorKeys = [
     GlobalKey<NavigatorState>(),

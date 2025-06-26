@@ -3,7 +3,6 @@ import 'package:GobbleUp/src/views/pages/onboarding_pages/gobbledloginpage.dart'
 import 'package:flutter/material.dart';
 import 'package:GobbleUp/src/services/auth_service.dart';
 
-
 class AuthLayoutGobbled extends StatelessWidget {
   const AuthLayoutGobbled({
     super.key,

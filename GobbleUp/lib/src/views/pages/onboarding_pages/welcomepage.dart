@@ -1,11 +1,7 @@
 import 'package:GobbleUp/src/services/auth_layout_gobbler.dart';
 import 'package:GobbleUp/src/services/auth_layout_gobbled.dart';
-import 'package:GobbleUp/src/services/auth_service.dart';
 import 'package:GobbleUp/src/data/constants.dart';
 import 'package:flutter/material.dart';
-
-import 'gobbledloginpage.dart';
-import 'gobblerloginpage.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});

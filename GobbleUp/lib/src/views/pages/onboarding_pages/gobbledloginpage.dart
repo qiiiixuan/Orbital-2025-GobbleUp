@@ -1,11 +1,8 @@
 import 'package:GobbleUp/src/data/constants.dart';
 import 'package:GobbleUp/src/services/auth_service.dart';
-import 'package:GobbleUp/src/views/pages/home_pages/gobbledrootpage.dart';
 import 'package:GobbleUp/src/views/pages/onboarding_pages/resetpasswordpage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-import '../home_pages/gobbledhomepage.dart';
 import 'gobbledregisterpage.dart';
 
 class GobbledLoginPage extends StatefulWidget {
@@ -122,32 +119,38 @@ void dispose() {
                 onPressed: () {
                   signIn();
                 },
-                style: ElevatedButton.styleFrom(
-                  minimumSize: Size(200, 50),
+                style: KButtonStyle.elevatedButtonStyle,
+                child: Text(
+                  'Login',
+                  style: KTextStyle.buttonTextStyle,
                 ),
-                child: Text('Login')),
+            ),
 
             const SizedBox(height: 40.0),
             Text(
-              "New Restaurant",
+              "New Restaurant?",
             ),
             const SizedBox(height: 10.0),
 
             ElevatedButton(
-                onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return GobbledRegisterPage();
-                      },
-                    ),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  minimumSize: Size(200, 50),
-                ),
-                child: Text('Register')),
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return GobbledRegisterPage();
+                    },
+                  ),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                minimumSize: Size(200, 50),
+              ),
+              child: Text(
+                'Register',
+                style: KTextStyle.buttonTextStyle,
+              )
+            ),
           ],
         ),
       ),

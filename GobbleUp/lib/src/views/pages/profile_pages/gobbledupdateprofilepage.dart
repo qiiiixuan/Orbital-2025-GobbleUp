@@ -1,12 +1,9 @@
 import 'package:GobbleUp/src/data/constants.dart';
 import 'package:GobbleUp/src/services/database_service.dart';
 import 'package:GobbleUp/src/views/pages/home_pages/gobbledrootpage.dart';
-import 'package:GobbleUp/src/views/pages/profile_pages/gobbledprofilepage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:GobbleUp/src/services/auth_service.dart';
-
-
 
 class GobbleUpDateProfilePage extends StatefulWidget {
   const GobbleUpDateProfilePage({super.key});
@@ -217,7 +214,10 @@ class _GobbleUpDateProfilePageState extends State<GobbleUpDateProfilePage> {
                 update();
               },
               style: KButtonStyle.elevatedButtonStyle,
-              child: Text('Update'),
+              child: Text(
+                'Update',
+                style: KTextStyle.buttonTextStyle,
+              ),
             ),
           ],
         ),

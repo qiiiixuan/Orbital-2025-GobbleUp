@@ -14,7 +14,13 @@ class KTextStyle {
     fontSize: 16.0,
     color: Colors.black54,
   );
+
+  // Text style for button text
+  static const buttonTextStyle = TextStyle(
+    fontSize: 16.0,
+  );
 }
+
 
 // Constant button styles
 class KButtonStyle {

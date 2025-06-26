@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:firebase_database/firebase_database.dart';
 
 class DatabaseService {
@@ -14,7 +13,7 @@ class DatabaseService {
     await ref.set(data);
   }
 
-  //Randomly generate resturant for gobbler
+  // Randomly generate restaurant for gobbler
   Future<Map<String, dynamic>?> getRandomRestaurant() async {
     final DatabaseReference ref = _firebaseDatabase.ref('Gobbled');
     final DataSnapshot snapshot = await ref.get();
@@ -23,10 +22,21 @@ class DatabaseService {
       final data = snapshot.value as Map<dynamic, dynamic>;
       final keys = data.keys.toList();
       final randomKey = keys[Random().nextInt(keys.length)];
+      final restaurantData = Map<String, dynamic>.from(data[randomKey]);
+      return restaurantData;
+    }
+    return null;
+  }
 
-      final resturantData = Map<String, dynamic>.from(data[randomKey]);
-      return resturantData;
+  // Obtain current restaurant data
+  Future<Map<String, dynamic>?> getRestaurant({required String uid}) async {
+    final DatabaseReference ref = _firebaseDatabase.ref('Gobbled/$uid');
+    final DataSnapshot snapshot = await ref.get();
 
+    if (snapshot.exists) {
+      final data = snapshot.value as Map<dynamic, dynamic>;
+      final restaurantData = Map<String, dynamic>.from(data);
+      return restaurantData;
     }
     return null;
   }

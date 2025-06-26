@@ -4,7 +4,6 @@ import 'package:GobbleUp/src/services/database_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
-
 import '../../widgets/restaurantcard_widget.dart';
 
 class GobblerHomePage extends StatefulWidget {
@@ -18,7 +17,7 @@ class _GobblerHomePageState extends State<GobblerHomePage> {
   int currentIndex = 0;
   final User? user = AuthService().currentUser;
 
-  final List<Future<Map<String, dynamic>?>> RestaurantFutures = [
+  final List<Future<Map<String, dynamic>?>> restaurantFutures = [
     DatabaseService().getRandomRestaurant(),
     DatabaseService().getRandomRestaurant(),
     DatabaseService().getRandomRestaurant(),
@@ -53,15 +52,12 @@ class _GobblerHomePageState extends State<GobblerHomePage> {
         ),
         automaticallyImplyLeading: false, // Disable back button
       ),
-      body: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: CardSwiper(
-          cardsCount: RestaurantFutures.length,
-          cardBuilder: (context, index, percentThresholdX, percentThresholdY) {
-            return RestaurantCardFuture(future: RestaurantFutures[index]);
-          },
-        ),
+      body: CardSwiper(
+        padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
+        cardsCount: restaurantFutures.length,
+        cardBuilder: (context, index, percentThresholdX, percentThresholdY) {
+          return RestaurantCardFuture(future: restaurantFutures[index]);
+        },
       ),
     );
   }
