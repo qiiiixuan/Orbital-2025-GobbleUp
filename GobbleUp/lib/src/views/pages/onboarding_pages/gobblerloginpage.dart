@@ -18,6 +18,7 @@ class _GobblerLoginPageState extends State<GobblerLoginPage> {
   TextEditingController passwordController = TextEditingController();
   // String confirmedUsername = '123';
   // String confirmedPassword = '123';
+  bool hidePassword = true;
   String errorMessage = '';
 
   void dispose() {
@@ -74,11 +75,21 @@ class _GobblerLoginPageState extends State<GobblerLoginPage> {
             const SizedBox(height: 20.0),
             TextField(
               controller: passwordController,
+              obscureText: hidePassword,
               decoration: InputDecoration(
                 labelText: 'Password',
                 border: OutlineInputBorder(),
+                suffixIcon: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      hidePassword = !hidePassword;
+                    });
+                  },
+                  child: Icon(
+                      hidePassword ? Icons.visibility : Icons.visibility_off
+                  ),
+                ),
               ),
-              obscureText: true,
               onEditingComplete: () {
                 setState(() {});
               },
@@ -99,13 +110,13 @@ class _GobblerLoginPageState extends State<GobblerLoginPage> {
               child: Text('Reset Password'),
              ),
             ),
-            
-            
-            const SizedBox(height: 10.0),
+
             Text(
               errorMessage,
               style: TextStyle(color: Colors.red),
             ),
+            const SizedBox(height: 10.0),
+
             ElevatedButton(
                 onPressed: () {
                   signIn();
@@ -113,10 +124,13 @@ class _GobblerLoginPageState extends State<GobblerLoginPage> {
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(200, 50),
                 ),
-                child: Text('Login')),
-            const SizedBox(height: 20.0),
-            Text("or"),
-            const SizedBox(height: 20.0),
+                child: Text('Login')
+            ),
+
+            const SizedBox(height: 40.0),
+            Text("New User"),
+            const SizedBox(height: 10.0),
+
             ElevatedButton(
                 onPressed: () {
                   Navigator.pushReplacement(

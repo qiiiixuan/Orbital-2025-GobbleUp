@@ -1,3 +1,4 @@
+import 'package:GobbleUp/src/data/constants.dart';
 import 'package:GobbleUp/src/services/auth_service.dart';
 import 'package:GobbleUp/src/views/pages/home_pages/gobbledrootpage.dart';
 import 'package:GobbleUp/src/views/pages/onboarding_pages/resetpasswordpage.dart';
@@ -19,6 +20,7 @@ class _GobbledLoginPageState extends State<GobbledLoginPage> {
   TextEditingController passwordController = TextEditingController();
   // These controllers are not used in this example, but can be used for form validation or submission.
 
+  bool hidePassword = true;
   String errorMessage = '';
 
 void dispose() {
@@ -73,12 +75,21 @@ void dispose() {
             const SizedBox(height: 20.0),
             TextField(
               controller: passwordController,
+              obscureText: hidePassword,
               decoration: InputDecoration(
                 labelText: 'Password',
                 border: OutlineInputBorder(),
+                suffixIcon: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      hidePassword = !hidePassword;
+                    });
+                  },
+                  child: Icon(
+                    hidePassword ? Icons.visibility : Icons.visibility_off
+                  ),
+                ),
               ),
-              obscureText: true,
-              
               onEditingComplete: () {
                 setState(() {});
               },
@@ -100,12 +111,12 @@ void dispose() {
              ),
             ),
 
-            const SizedBox(height: 10.0),
-
             Text(
               errorMessage,
               style: TextStyle(color: Colors.red),
             ),
+
+            const SizedBox(height: 10.0),
 
             ElevatedButton(
                 onPressed: () {
@@ -116,9 +127,11 @@ void dispose() {
                 ),
                 child: Text('Login')),
 
-            const SizedBox(height: 20.0),
-            Text("or"),
-            const SizedBox(height: 20.0),
+            const SizedBox(height: 40.0),
+            Text(
+              "New Restaurant",
+            ),
+            const SizedBox(height: 10.0),
 
             ElevatedButton(
                 onPressed: () {
@@ -140,6 +153,4 @@ void dispose() {
       ),
     );
   }
-
-  
 }
