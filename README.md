@@ -149,3 +149,6 @@ To run the program
 ```terminal
 flutter run
 ```
+### During Testing
+
+- Press ‘hot reload’ button / ‘R’ on your terminal  after creating new Gobbled account to view it in swiper
