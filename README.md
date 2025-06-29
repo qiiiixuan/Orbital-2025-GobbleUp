@@ -1,4 +1,3 @@
-# Orbital-2025-GobbleUp
 # 🍽️ GobbleUp
 
 **NUS Orbital 2025 · Team GobbleUp · ID: 7035**  
@@ -125,15 +124,6 @@ GobbleUp is a mobile platform that:
 
 ---
 
-## 🧪 Technical Proof of Concept
-A working demo includes:
-- Firebase-connected Auth
-- Gobbler & Gobbled accounts
-- Swipe UI
-- Data persistence across sessions
-
----
-
 ## 🛠️ Installation Instructions
 
 ### Prerequisites
@@ -143,8 +133,19 @@ A working demo includes:
 
 ### Steps to Run Locally
 
+To clone the repository, run in Git Bash
 ```bash
 git clone https://github.com/qiiiixuan/Orbital-2025-GobbleUp.git
+```
+After cloning, go to directory
+```terminal
 cd Orbital-2025-GobbleUp
+```
+To fetch dependencies
+```terminal
 flutter pub get
+```
+To run the program
+```terminal
 flutter run
+```
