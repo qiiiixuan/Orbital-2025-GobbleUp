@@ -16,6 +16,7 @@ class _GobbledRootPageState extends State<GobbledRootPage> {
     GlobalKey<NavigatorState>(),
     GlobalKey<NavigatorState>(),
   ];
+
   void _onTapped(int index) {
     if (index == currentIndex) {
       // If the same tab is tapped, pop to the root of that tab
@@ -27,6 +28,7 @@ class _GobbledRootPageState extends State<GobbledRootPage> {
     }
   }
 
+  /// Builds an Offstage widget with a Navigator for the given index and child. 
   Widget _buildOffstageNavigator(int index, Widget child) {
     return Offstage(
       offstage: currentIndex != index,

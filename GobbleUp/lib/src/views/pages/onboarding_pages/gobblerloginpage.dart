@@ -15,17 +15,12 @@ class GobblerLoginPage extends StatefulWidget {
 class _GobblerLoginPageState extends State<GobblerLoginPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  // String confirmedUsername = '123';
-  // String confirmedPassword = '123';
+  // Controllers are to save the text input from the user
+
   bool hidePassword = true;
   String errorMessage = '';
 
-  void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
-    super.dispose();
-  }
-
+  // Sign in function
   void signIn() async {
     try {
       await authService.value.signIn(
@@ -69,6 +64,7 @@ class _GobblerLoginPageState extends State<GobblerLoginPage> {
               ),
               onEditingComplete: () {
                 setState(() {});
+                // Will update the state when the user finishes editing
               },
             ),
             const SizedBox(height: 20.0),
@@ -81,10 +77,12 @@ class _GobblerLoginPageState extends State<GobblerLoginPage> {
                 suffixIcon: GestureDetector(
                   onTap: () {
                     setState(() {
+                      // Toggle the visibility of the password
                       hidePassword = !hidePassword;
                     });
                   },
                   child: Icon(
+                    // Change the icon based on the visibility of the password
                       hidePassword ? Icons.visibility : Icons.visibility_off
                   ),
                 ),

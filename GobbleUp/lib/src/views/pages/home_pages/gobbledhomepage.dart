@@ -37,6 +37,7 @@ class _GobblerHomePageState extends State<GobbledHomePage> {
 
       body: Center(
         child: Column(
+          // Align the text in the center of the screen
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [

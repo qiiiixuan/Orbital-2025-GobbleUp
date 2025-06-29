@@ -13,30 +13,30 @@ class GobblerRegisterPage extends StatefulWidget {
 }
 
 class _GobblerRegisterPageState extends State<GobblerRegisterPage> {
+
+  // Variables to be used
   TextEditingController emailController = TextEditingController();
-    TextEditingController nameController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
-  @override
-  void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
-    super.dispose();
-  }
-
+ 
+  // register function
+  // This function will create a new user account in Firebase Authentication
   void register() async {
     try {
+
+      // Create a new user with email and password
       final credential = await authService.value.createUser(
           email: emailController.text, password: passwordController.text);
 
       final uid = credential.user!.uid;
 
+      // Create new user data in the database
       await DatabaseService().create(
         path: 'Gobbler/$uid',
         data: {
           'username': nameController.text,
           'email': emailController.text,
-          'savedResturants': [],
+          'savedResturants': [], // feature to be added in the future
         },
       );
       Navigator.pushReplacement(
@@ -50,13 +50,10 @@ class _GobblerRegisterPageState extends State<GobblerRegisterPage> {
     } on FirebaseAuthException catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Registration failed: ${e.message}')),
-      );
+      ); // Show an error message if registration fails
     }
   }
 
-  void popPage() {
-    Navigator.pop(context);
-  }
 
   @override
   Widget build(BuildContext context) {

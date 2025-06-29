@@ -52,6 +52,8 @@ class _GobblerHomePageState extends State<GobblerHomePage> {
         ),
         automaticallyImplyLeading: false, // Disable back button
       ),
+
+      // This is the hinge like cards 
       body: CardSwiper(
         padding: EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
         cardsCount: restaurantFutures.length,

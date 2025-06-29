@@ -51,11 +51,12 @@ class _GobblerProfilePageState extends State<GobblerProfilePage> {
               ),
 
               const SizedBox(height: 20),
-
+              
               TextButton.icon(
                 onPressed: () {
                   logout();
                   setState(() {
+                    // Log out the user and navigate to the welcome page, removing the previous pages from stack
                     Navigator.of(context, rootNavigator: true)
                         .pushAndRemoveUntil(
                       MaterialPageRoute(builder: (_) => const WelcomePage()),
@@ -81,6 +82,7 @@ class _GobblerProfilePageState extends State<GobblerProfilePage> {
     );
   }
 
+  // Function to handle logout
   void logout() async {
     try {
       await authService.value.signOut();

@@ -46,6 +46,7 @@ class _GobbleUpDateProfilePageState extends State<GobbleUpDateProfilePage> {
    
   ];
 
+  // Update user profile
   void update() async {
     try {
       await DatabaseService().update( path: 'Gobbled/${authService.value.currentUser!.uid}', 

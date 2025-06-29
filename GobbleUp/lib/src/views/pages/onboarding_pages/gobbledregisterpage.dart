@@ -16,7 +16,6 @@ class GobbledRegisterPage extends StatefulWidget {
 class _GobbledRegisterPageState extends State<GobbledRegisterPage> {
 
   // Variables to be used
-  // String uid = 'QHzu939l99fxgWkqYTBxK85tWTx1'; //to be replaced with user ID through Auth
   TextEditingController emailController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -49,21 +48,19 @@ class _GobbledRegisterPageState extends State<GobbledRegisterPage> {
    
   ];
 
-  // Creating new data entry in database
-  // void createAccount() {
-  //   DatabaseService().create(path: 'Gobbled/$uid', data: {
-  //     'Name': nameController.text,
-  //     'Cuisine': selectedCuisine,
-  //   });
-  // }
-
+ 
+  // Register function
+  // This function will create a new user account in Firebase Authentication
   void register() async {
     try {
+
+      // Create a new user with email and password
       final credential = await authService.value.createUser(
           email: emailController.text, password: passwordController.text);
 
       final uid = credential.user!.uid;
 
+      // Create new user data in the database
       await DatabaseService().create(
         path: 'Gobbled/$uid',
         data: {

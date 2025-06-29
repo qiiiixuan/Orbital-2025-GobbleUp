@@ -27,6 +27,7 @@ class _GobblerRootPageState extends State<GobblerRootPage> {
     }
   }
 
+  /// Builds an Offstage widget with a Navigator for the given index and child. 
   Widget _buildOffstageNavigator(int index, Widget child) {
     return Offstage(
       offstage: currentIndex != index,

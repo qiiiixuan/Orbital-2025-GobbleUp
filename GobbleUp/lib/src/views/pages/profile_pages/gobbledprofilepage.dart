@@ -63,6 +63,7 @@ class _GobbledProfilePageState extends State<GobbledProfilePage> {
                     MaterialPageRoute(
                       builder: (context) {
                         return GobbleUpDateProfilePage();
+                        // Allow the user to update their profile
                       },
                     ),
                   );
@@ -75,11 +76,11 @@ class _GobbledProfilePageState extends State<GobbledProfilePage> {
 
               SizedBox(height: 20),
 
-              // Handle logout action
               TextButton.icon(
                 onPressed: () {
                   logout();
                   setState(() {
+                    // Log out the user and navigate to the welcome page, removing the previous pages from stack
                     Navigator.of(context, rootNavigator: true)
                         .pushAndRemoveUntil(
                       MaterialPageRoute(builder: (_) => const WelcomePage()),

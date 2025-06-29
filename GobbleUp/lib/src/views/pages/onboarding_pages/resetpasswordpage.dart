@@ -15,6 +15,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
   TextEditingController emailController = TextEditingController();
   String errorMessage = '';
 
+
+  // Reset password function
   void resetPassword() async {
     try {
       await authService.value.resetPassword(
@@ -24,6 +26,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
         const SnackBar(content: Text('Password reset link sent to your email')),
       );
       setState(() {
+        // Clear the email field and error message
         errorMessage = '';
       });
     } on FirebaseAuthException catch (e) {
